@@ -1,0 +1,5 @@
+clear lock
+remove lock = Caps_Lock
+keycode 66 =
+keycode 66 = Escape Caps_Lock
+keysym Caps_Lock = Escape Caps_Lock
