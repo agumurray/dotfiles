@@ -279,7 +279,7 @@ primary_widgets = [
             background=colors[14],
         ),
         widget.Clock(
-            format="%I:%M %p",
+            format="%H:%M:%S",
             foreground=colors[4],
             background=colors[14],
         ),
