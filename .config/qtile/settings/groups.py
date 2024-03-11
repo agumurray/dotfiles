@@ -5,13 +5,19 @@ from libqtile.command import lazy
 from .keys import mod, keys
 
 groups = [
-    Group(" 󰈹 "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group(" 󰙯 "),
-    Group("  "),
+    #Group(" 󰈹 "),
+    #Group("  "),
+    #Group("  "),
+    #Group("  "),
+    #Group("  "),
+    #Group(" 󰙯 "),
+    #Group("  "),
+    Group(" 1 "),
+    Group(" 2 "),
+    Group(" 3 "),
+    Group(" 4 "),
+    Group(" 5 "),
+    Group(" 6 "),
 ]
 
 for i, group in enumerate(groups):
