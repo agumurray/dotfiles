@@ -26,8 +26,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias cdc="cd /home/agustin-murray/facultad/CSO"
-alias cdt="cd /home/agustin-murray/facultad/TDL"
+alias cbd="cd /home/agustin-murray/Documents/CBD"
 
 bindkey -v
 export KEYTIMEOUT=1
