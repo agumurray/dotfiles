@@ -47,6 +47,26 @@ god() {
     fi
 }
 
+fpa() {
+    if [ -z "$1" ]; then
+        echo "Usage: pascal_compile_execute <filename>"
+        return 1
+    fi
+
+    filename=$(basename "$1" .pas)
+
+    fpc "$filename".pas
+
+    if [ $? -eq 0 ]; then
+        ./"$filename"
+
+        rm -f "$filename" "$filename".o
+    else
+        echo "Compilation failed."
+    fi
+}
+
+
 
 
 shh() {
