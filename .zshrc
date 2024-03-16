@@ -86,6 +86,15 @@ wifirec() {
     sudo airmon-ng stop wlan0mon
 }
 
+hdmion() {
+    xrandr --output HDMI-1 --auto --same-as eDP-1
+    pacmd set-card-profile 0 output:hdmi-stereo
+}
+
+hdmioff() {
+    pacmd set-card-profile 0 output:analog-stereo
+}
+
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
