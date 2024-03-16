@@ -88,11 +88,11 @@ wifirec() {
 
 hdmion() {
     xrandr --output HDMI-1 --auto --same-as eDP-1
-    pacmd set-card-profile 0 output:hdmi-stereo
+    pacmd set-card-profile 0 output:hdmi-stereo-extra1+input:analog-stereo
 }
 
 hdmioff() {
-    pacmd set-card-profile 0 output:analog-stereo
+    pacmd set-card-profile 0 output:analog-stereo+input:analog-stereo
 }
 
 
