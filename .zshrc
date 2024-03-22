@@ -31,8 +31,10 @@ alias cbd="cd /home/agustin-murray/Documents/CBD"
 bindkey -v
 export KEYTIMEOUT=1
 
-alias l="ls -1"
-alias la="ls -a -1"
+alias l="lsd -1"
+alias la="lsd -a -1"
+alias ls="lsd"
+
 
 #c alias:
 god() {
