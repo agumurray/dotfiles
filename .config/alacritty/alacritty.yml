@@ -162,7 +162,7 @@ font:
     family: Hack Nerd Font
     # family: SpaceMono NF
     style: Regular
-  size: 7
+  size: 8
 
 window:
   padding:

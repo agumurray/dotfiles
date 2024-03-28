@@ -71,4 +71,4 @@ gruvbox = [
 ]
 
 
-colors = nord
+colors = catppuccin

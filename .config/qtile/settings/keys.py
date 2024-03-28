@@ -21,8 +21,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod, "control"], "l", lazy.screen.next_group()),
 
     # Change window sizes (MonadTall)
-    ([mod, "shift"], "l", lazy.layout.grow()),
-    ([mod, "shift"], "h", lazy.layout.shrink()),
+    ([mod, "shift"], "l", lazy.layout.shuffle_right()),
+#bindsym $mod+d focus child
+    ([mod, "shift"], "h", lazy.layout.shuffle_left()),
 
     # Toggle floating
     ([mod, "shift"], "f", lazy.window.toggle_floating()),

@@ -1,57 +1,74 @@
+[[colors.indexed_colors]]
+color = "#FAB387"
+index = 16
+
+[[colors.indexed_colors]]
+color = "#F5E0DC"
+index = 17
+
 [colors.bright]
-black = "#4c566a"
-blue = "#81a1c1"
-cyan = "#8fbcbb"
-green = "#a3be8c"
-magenta = "#b48ead"
-red = "#bf616a"
-white = "#eceff4"
-yellow = "#ebcb8b"
+black = "#585B70"
+blue = "#89B4FA"
+cyan = "#94E2D5"
+green = "#A6E3A1"
+magenta = "#F5C2E7"
+red = "#F38BA8"
+white = "#A6ADC8"
+yellow = "#F9E2AF"
 
 [colors.cursor]
-cursor = "#d8dee9"
-text = "#2e3440"
+cursor = "#F5E0DC"
+text = "#1E1E2E"
 
 [colors.dim]
-black = "#373e4d"
-blue = "#68809a"
-cyan = "#6d96a5"
-green = "#809575"
-magenta = "#8c738c"
-red = "#94545d"
-white = "#aeb3bb"
-yellow = "#b29e75"
+black = "#45475A"
+blue = "#89B4FA"
+cyan = "#94E2D5"
+green = "#A6E3A1"
+magenta = "#F5C2E7"
+red = "#F38BA8"
+white = "#BAC2DE"
+yellow = "#F9E2AF"
+
+[colors.hints.end]
+background = "#A6ADC8"
+foreground = "#1E1E2E"
+
+[colors.hints.start]
+background = "#F9E2AF"
+foreground = "#1E1E2E"
 
 [colors.normal]
-black = "#3b4252"
-blue = "#81a1c1"
-cyan = "#88c0d0"
-green = "#a3be8c"
-magenta = "#b48ead"
-red = "#bf616a"
-white = "#e5e9f0"
-yellow = "#ebcb8b"
+black = "#45475A"
+blue = "#89B4FA"
+cyan = "#94E2D5"
+green = "#A6E3A1"
+magenta = "#F5C2E7"
+red = "#F38BA8"
+white = "#BAC2DE"
+yellow = "#F9E2AF"
 
 [colors.primary]
-background = "#2e3440"
-dim_foreground = "#a5abb6"
-foreground = "#d8dee9"
+background = "#1E1E2E"
+bright_foreground = "#CDD6F4"
+dim_foreground = "#CDD6F4"
+foreground = "#CDD6F4"
 
-# [colors.search.footer_bar]
-# background = "#434c5e"
-# foreground = "#d8dee9"
+[colors.search.focused_match]
+background = "#A6E3A1"
+foreground = "#1E1E2E"
 
 [colors.search.matches]
-background = "#88c0d0"
-foreground = "CellBackground"
+background = "#A6ADC8"
+foreground = "#1E1E2E"
 
 [colors.selection]
-background = "#4c566a"
-text = "CellForeground"
+background = "#F5E0DC"
+text = "#1E1E2E"
 
 [colors.vi_mode_cursor]
-cursor = "#d8dee9"
-text = "#2e3440"
+cursor = "#B4BEFE"
+text = "#1E1E2E"
 
 [font]
 size = 8
