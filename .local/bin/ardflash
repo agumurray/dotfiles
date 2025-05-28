@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+#	Arduino auto-flasher 1.0
+# This script compiles and flashes an Arduino using avr-gcc and avrdude,
+# automatically detecting the correct serial port.
+#	Dependencies: avr-gcc, avrdude, avr-libc
+
+# Ensure a source file is provided
+if [ -z "$1" ]; then
+	echo "❌ Error: No source file provided."
+	echo "Usage: $0 <path_to_main.c>"
+	exit 1
+fi
+
+SRC="$1"
+
+# Determine compilation sources
+if [ $# -eq 1 ]; then
+	SRC="$1"
+	if [ ! -f "$SRC" ]; then
+		echo "❌ Error: Source file '$SRC' does not exist."
+		exit 1
+	fi
+	SRC_DIR=$(dirname "$SRC")
+	SRC_FILES=$(find "$SRC_DIR" -maxdepth 1 -name '*.c')
+	echo $SRC_FILES
+else
+	SRC_FILES="$@"
+	SRC_DIR=$(dirname "$1")
+fi
+
+# Extract the directory of the source file
+DEBUG_DIR="$SRC_DIR/Debug"
+
+# Configuration
+MCU="atmega328p"
+BAUD_1=115200
+BAUD_2=57600
+PROGRAMMER="arduino"
+ELF="$DEBUG_DIR/main.elf"
+HEX="$DEBUG_DIR/main.hex"
+
+# Create Debug directory inside the source file's directory if it doesn't exist
+mkdir -p "$DEBUG_DIR"
+
+# Find connected serial ports
+PORTS=$(ls /dev/ttyUSB* /dev/ttyACM* 2>/dev/null)
+
+# Function to check if a port belongs to an Arduino
+detect_arduino() {
+	local port="$1"
+	local usb_info=$(udevadm info --query=all --name="$port" 2>/dev/null)
+
+	# Check for known Arduino Vendor IDs
+	if echo "$usb_info" | grep -qE "ID_VENDOR_ID=2341|ID_VENDOR_ID=1a86|ID_VENDOR_ID=10c4"; then
+		echo "$port"
+		return 0
+	else
+		return 1
+	fi
+}
+
+# Search for the first detected Arduino port
+PORT=""
+for p in $PORTS; do
+	if PORT=$(detect_arduino "$p"); then
+		break
+	fi
+done
+
+# Exit if no Arduino is found
+if [ -z "$PORT" ]; then
+	echo "❌ No Arduino detected."
+	exit 1
+fi
+
+echo "✅ Arduino detected at: $PORT"
+
+# Compile the code
+echo "🔨 Compiling..."
+avr-gcc -mmcu=$MCU -Wall -Os -o "$ELF" $SRC_FILES
+if [ $? -ne 0 ]; then
+	echo "❌ Compilation failed"
+	exit 1
+fi
+
+# Convert to HEX format
+echo "📦 Generating HEX..."
+avr-objcopy -O ihex -R .eeprom "$ELF" "$HEX"
+if [ $? -ne 0 ]; then
+	echo "❌ Error generating .hex file"
+	exit 1
+fi
+
+# Check if the user has write permissions to the serial port
+if [ ! -w "$PORT" ]; then
+	GROUP=$(ls -l "$PORT" | awk '{print $4}')
+	echo "❌ Error: No write permission for $PORT."
+	echo "🔧 Try adding your user to the '$GROUP' group:"
+	echo "   sudo usermod -aG $GROUP $(whoami)"
+	echo "   Then log out and log back in."
+	exit 1
+fi
+
+# Flash the Arduino
+echo "⚡ Flashing Arduino..."
+avrdude -c $PROGRAMMER -p $MCU -P $PORT -b $BAUD_1 -U flash:w:"$HEX":i
+
+# If flashing fails at 115200, try 57600 (for some clones)
+if [ $? -ne 0 ]; then
+	echo "⚠️ Retrying with baudrate $BAUD_2..."
+	avrdude -c $PROGRAMMER -p $MCU -P $PORT -b $BAUD_2 -U flash:w:"$HEX":i
+	if [ $? -ne 0 ]; then
+		echo "❌ Flashing failed"
+		exit 1
+	fi
+fi
+
+echo "✅ Flashing successful"
