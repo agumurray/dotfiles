@@ -26,14 +26,14 @@ bindsym $mod + F6 exec --no-startup-id feh --bg-fill --randomize ~/.local/wallpa
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i  5 --allow-boost && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d  5 --allow-boost && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pamixer -t && pkill -RTMIN+10 i3blocks
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym Control+3 exec --no-startup-id pamixer -i 5 --allow-boost && pkill -RTMIN+10 i3blocks
-bindsym Control+2 exec --no-startup-id pamixer -d 5 --allow-boost && pkill -RTMIN+10 i3blocks
+bindsym Control+3 exec --no-startup-id pamixer -i 5 && pkill -RTMIN+10 i3blocks
+bindsym Control+2 exec --no-startup-id pamixer -d 5 && pkill -RTMIN+10 i3blocks
 bindsym Control+1 exec --no-startup-id pamixer -t && pkill -RTMIN+10 i3blocks
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
